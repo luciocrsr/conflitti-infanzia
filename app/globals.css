@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+:root {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --accent: #166534;
+  --accent-bright: #16a34a;
+  --accent-glow: rgba(22, 101, 52, 0.45);
+  --surface: #18181b;
+  --surface-border: #27272a;
+  --muted: #71717a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-editorial: var(--font-newsreader);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* Pulse animation for active conflict countries */
+@keyframes conflict-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.conflict-pulse {
+  animation: conflict-pulse 3s ease-in-out infinite;
+}
+
+/* Subtle glow behind the map */
+.map-glow {
+  box-shadow: 0 0 120px 40px rgba(22, 101, 52, 0.07);
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Side panel slide-in */
+@keyframes slide-in {
+  from { transform: translateX(40px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Smooth zoom transition on react-simple-maps */
+.rsm-zoomable-group {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* SVG geography transitions */
+.rsm-geography {
+  transition: fill 0.2s ease;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus rings for keyboard nav */
+:focus-visible {
+  outline: 2px solid #16a34a;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .conflict-pulse,
+  .animate-slide-in {
+    animation: none !important;
+  }
+  .rsm-zoomable-group,
+  .rsm-geography {
+    transition: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
