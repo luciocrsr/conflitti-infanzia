@@ -139,17 +139,29 @@ const SECTIONS: SectionDef[] = [
 
 // ─── Bold text renderer ───────────────────────────────────────────────────────
 
-function renderBold(text: string): React.ReactNode[] {
-  const parts = text.split(/\*([^*]+)\*/g);
-  return parts.map((part, i) =>
-    i % 2 === 1 ? <strong key={i} className="font-semibold text-zinc-100">{part}</strong> : part
-  );
+function renderLine(text: string): React.ReactNode[] {
+  const result: React.ReactNode[] = [];
+  const regex = /\*\*([^*]+)\*\*|\*([^*]+)\*/g;
+  let last = 0;
+  let match;
+  let key = 0;
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > last) result.push(text.slice(last, match.index));
+    if (match[1] !== undefined) {
+      result.push(<strong key={key++} className="font-semibold text-zinc-100">{match[1]}</strong>);
+    } else {
+      result.push(<em key={key++} className="italic">{match[2]}</em>);
+    }
+    last = match.index + match[0].length;
+  }
+  if (last < text.length) result.push(text.slice(last));
+  return result;
 }
 
 function renderText(text: string): React.ReactNode {
   return text.split("\n").map((line, i, arr) => (
     <span key={i}>
-      {renderBold(line)}
+      {renderLine(line)}
       {i < arr.length - 1 && <br />}
     </span>
   ));
