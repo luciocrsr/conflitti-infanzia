@@ -42,7 +42,7 @@ export const conflicts: Conflict[] = [
   {
     slug: "palestina-israele",
     nome: "Palestina / Israele",
-    autori: ["D'Abramo", "Urlovas", "Fino", "Mazzuco"],
+    autori: ["D'Abramo", "Urlovas", "Fino Mazzucco"],
     gruppo: 1,
     isoNumeric: ["275", "376"],
     center: [35, 31.5],
@@ -53,7 +53,7 @@ export const conflicts: Conflict[] = [
   {
     slug: "iran",
     nome: "Iran",
-    autori: ["D'Abramo", "Urlovas", "Fino", "Mazzuco"],
+    autori: ["D'Abramo", "Urlovas", "Fino Mazzucco"],
     gruppo: 1,
     isoNumeric: ["364"],
     center: [53, 32],
@@ -108,7 +108,7 @@ export const conflicts: Conflict[] = [
   {
     slug: "mali",
     nome: "Mali",
-    autori: ["Tomaino"],
+    autori: ["Tomaino J."],
     gruppo: 3,
     isoNumeric: ["466"],
     center: [-2, 17],
@@ -119,7 +119,7 @@ export const conflicts: Conflict[] = [
   {
     slug: "niger",
     nome: "Niger",
-    autori: ["Tomaino"],
+    autori: ["Tomaino J."],
     gruppo: 3,
     isoNumeric: ["562"],
     center: [8, 16],
@@ -141,7 +141,7 @@ export const conflicts: Conflict[] = [
   {
     slug: "rdc",
     nome: "Repubblica Democratica del Congo",
-    autori: ["Fonbergen"],
+    autori: ["von Berger"],
     gruppo: 3,
     isoNumeric: ["180"],
     center: [24, -3],
@@ -152,7 +152,7 @@ export const conflicts: Conflict[] = [
   {
     slug: "etiopia",
     nome: "Etiopia",
-    autori: ["Fonbergen"],
+    autori: ["von Berger"],
     gruppo: 3,
     isoNumeric: ["231"],
     center: [40, 9],
@@ -192,6 +192,17 @@ export const conflicts: Conflict[] = [
     anno: 2006,
     criticita: 7,
     stabilita: 5,
+  },
+  {
+    slug: "cuba",
+    nome: "Cuba",
+    autori: ["Corsaro"],
+    gruppo: 1,
+    isoNumeric: ["192"],
+    center: [-79, 22],
+    anno: 2021,
+    criticita: 7,
+    stabilita: 3,
   },
 ];
 
