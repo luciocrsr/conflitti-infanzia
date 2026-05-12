@@ -151,7 +151,8 @@ export default function ContentPanel({ conflict, content, heroSrc, onClose }: Pr
       </div>
 
       {/* ── Scrollable body ── */}
-      <div className="flex-1 overflow-y-auto px-5 py-5 flex flex-col gap-5">
+      <div className="flex-1 overflow-y-auto">
+      <div className="px-5 py-5 flex flex-col gap-5">
 
         {/* ── Report grafico ── */}
         <div className="rounded-2xl border border-zinc-800/50 bg-zinc-900/40 overflow-hidden">
@@ -224,6 +225,7 @@ export default function ContentPanel({ conflict, content, heroSrc, onClose }: Pr
           </svg>
         </Link>
 
+      </div>
       </div>
     </div>
   );
