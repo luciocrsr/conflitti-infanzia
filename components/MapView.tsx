@@ -71,11 +71,8 @@ export default function MapView({ conflicts, contents, heroes, galleries }: Prop
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-100 drop-shadow-lg">
             Conflitti nel mondo
           </h1>
-          <p className="mt-3 text-base sm:text-lg text-zinc-400 max-w-xl mx-auto drop-shadow">
+          <p className="mt-3 text-xl sm:text-2xl text-zinc-400 max-w-xl mx-auto drop-shadow">
             Eserciti finanziati, infanzie dimenticate
-          </p>
-          <p className="mt-2 text-sm text-zinc-600 max-w-xl mx-auto drop-shadow">
-            Clicca su un paese evidenziato per esplorare la scheda.
           </p>
         </div>
 
