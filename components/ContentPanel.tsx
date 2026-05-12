@@ -1,23 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import type { Conflict } from "@/lib/conflicts";
 import type { ConflictContent } from "@/lib/content";
-
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-type Section = "contestualizzazione" | "giovani" | "sanita";
-
-type SectionDef = {
-  key: Section;
-  label: string;
-  fullLabel: string;
-  accent: string;
-  accentDim: string;
-  accentBorder: string;
-  icon: React.ReactNode;
-};
 
 type Props = {
   conflict: Conflict;
@@ -55,11 +42,11 @@ function trackPath(cx: number, cy: number, r: number): string {
 // ─── Stability label ──────────────────────────────────────────────────────────
 
 function stabilityInfo(s: number) {
-  if (s <= 2) return { label: "Critica",    cls: "text-red-400    bg-red-950/50    border-red-800/60"    };
-  if (s <= 4) return { label: "Alta",       cls: "text-orange-400 bg-orange-950/50 border-orange-800/60" };
-  if (s <= 6) return { label: "Moderata",   cls: "text-amber-300  bg-amber-950/50  border-amber-800/60"  };
-  if (s <= 8) return { label: "Bassa",      cls: "text-lime-400   bg-lime-950/50   border-lime-800/60"   };
-  return             { label: "Minima",     cls: "text-red-400 bg-red-950/50 border-red-800/60" };
+  if (s <= 2) return { label: "Critica",  cls: "text-red-400    bg-red-950/50    border-red-800/60"    };
+  if (s <= 4) return { label: "Alta",     cls: "text-orange-400 bg-orange-950/50 border-orange-800/60" };
+  if (s <= 6) return { label: "Moderata", cls: "text-amber-300  bg-amber-950/50  border-amber-800/60"  };
+  if (s <= 8) return { label: "Bassa",    cls: "text-lime-400   bg-lime-950/50   border-lime-800/60"   };
+  return             { label: "Minima",   cls: "text-red-400    bg-red-950/50    border-red-800/60"   };
 }
 
 // ─── Radial chart ─────────────────────────────────────────────────────────────
@@ -67,15 +54,15 @@ function stabilityInfo(s: number) {
 function RadialChart({ criticita, stabilita, anni }: { criticita: number; stabilita: number; anni: number }) {
   const cx = 52, cy = 52;
   const rings = [
-    { r: 46, fraction: criticita / 10,                    color: "#f87171", track: "#2d1010" },
-    { r: 34, fraction: (10 - stabilita) / 10,             color: "#fbbf24", track: "#2d1f08" },
-    { r: 22, fraction: Math.min(anni / 35, 1),            color: "#38bdf8", track: "#081e2d" },
+    { r: 46, fraction: criticita / 10,          color: "#f87171", track: "#2d1010" },
+    { r: 34, fraction: (10 - stabilita) / 10,   color: "#fbbf24", track: "#2d1f08" },
+    { r: 22, fraction: Math.min(anni / 35, 1),  color: "#38bdf8", track: "#081e2d" },
   ];
   return (
     <svg viewBox="0 0 104 104" className="w-[96px] h-[96px] shrink-0">
       {rings.map(({ r, fraction, color, track }) => (
         <g key={r}>
-          <path d={trackPath(cx, cy, r)} fill="none" stroke={track}  strokeWidth="5" strokeLinecap="round" />
+          <path d={trackPath(cx, cy, r)} fill="none" stroke={track} strokeWidth="5" strokeLinecap="round" />
           <path d={arcPath(cx, cy, r, fraction)} fill="none" stroke={color} strokeWidth="5" strokeLinecap="round" />
         </g>
       ))}
@@ -83,95 +70,19 @@ function RadialChart({ criticita, stabilita, anni }: { criticita: number; stabil
   );
 }
 
-// ─── Section tiles definition ─────────────────────────────────────────────────
+// ─── Brief text extractor ─────────────────────────────────────────────────────
 
-const SECTIONS: SectionDef[] = [
-  {
-    key: "contestualizzazione",
-    label: "Contesto",
-    fullLabel: "Contestualizzazione",
-    accent: "#f87171",
-    accentDim: "rgba(248,113,113,0.07)",
-    accentBorder: "rgba(248,113,113,0.35)",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <circle cx="12" cy="12" r="10" />
-        <line x1="2" y1="12" x2="22" y2="12" />
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-      </svg>
-    ),
-  },
-  {
-    key: "giovani",
-    label: "Giornata",
-    fullLabel: "Giornata tipo",
-    accent: "#fbbf24",
-    accentDim: "rgba(251,191,36,0.07)",
-    accentBorder: "rgba(251,191,36,0.35)",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="w-7 h-7">
-        <circle cx="12" cy="12" r="5" />
-        <line x1="12" y1="1"    x2="12" y2="3"    />
-        <line x1="12" y1="21"   x2="12" y2="23"   />
-        <line x1="4.22"  y1="4.22"  x2="5.64"  y2="5.64"  />
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-        <line x1="1"    y1="12"    x2="3"    y2="12"    />
-        <line x1="21"   y1="12"    x2="23"   y2="12"    />
-        <line x1="4.22"  y1="19.78" x2="5.64"  y2="18.36" />
-        <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"  />
-      </svg>
-    ),
-  },
-  {
-    key: "sanita",
-    label: "Salute",
-    fullLabel: "Situazione sanitaria",
-    accent: "#38bdf8",
-    accentDim: "rgba(56,189,248,0.07)",
-    accentBorder: "rgba(56,189,248,0.35)",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-      </svg>
-    ),
-  },
-];
-
-// ─── Bold text renderer ───────────────────────────────────────────────────────
-
-function renderLine(text: string): React.ReactNode[] {
-  const result: React.ReactNode[] = [];
-  const regex = /\*\*([^*]+)\*\*|\*([^*]+)\*/g;
-  let last = 0;
-  let match;
-  let key = 0;
-  while ((match = regex.exec(text)) !== null) {
-    if (match.index > last) result.push(text.slice(last, match.index));
-    if (match[1] !== undefined) {
-      result.push(<strong key={key++} className="font-semibold text-zinc-100">{match[1]}</strong>);
-    } else {
-      result.push(<em key={key++} className="italic">{match[2]}</em>);
-    }
-    last = match.index + match[0].length;
-  }
-  if (last < text.length) result.push(text.slice(last));
-  return result;
-}
-
-function renderText(text: string): React.ReactNode {
-  return text.split("\n").map((line, i, arr) => (
-    <span key={i}>
-      {renderLine(line)}
-      {i < arr.length - 1 && <br />}
-    </span>
-  ));
+function brief(text: string, max = 190): string {
+  const clean = text.replace(/\*\*/g, "").replace(/\*/g, "").replace(/^#+\s*/gm, "").trim();
+  const first = clean.split(/\n\n+/)[0].trim();
+  if (first.length <= max) return first;
+  const cut = first.slice(0, max);
+  return cut.replace(/\s+\S*$/, "") + "…";
 }
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
-export default function ContentPanel({ conflict, content, heroSrc, gallery, onClose }: Props) {
-  const [openSection, setOpenSection] = useState<Section | null>(null);
-
+export default function ContentPanel({ conflict, content, heroSrc, onClose }: Props) {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", handler);
@@ -180,15 +91,13 @@ export default function ContentPanel({ conflict, content, heroSrc, gallery, onCl
 
   const gruppoLabel = conflict.gruppo === "trasversale" ? "Sezione trasversale" : `Gruppo ${conflict.gruppo}`;
   const yearsActive = new Date().getFullYear() - conflict.anno;
-
-  const sectionText: Record<Section, string> = {
-    contestualizzazione: content?.contestualizzazione ?? "",
-    giovani: content?.giovani ?? "",
-    sanita: content?.sanita ?? "",
-  };
-
   const stability = stabilityInfo(conflict.stabilita);
-  const activeDef = SECTIONS.find((s) => s.key === openSection) ?? null;
+
+  const briefs = [
+    { label: "Contesto",           text: content?.contestualizzazione ?? "" },
+    { label: "Giornata tipo",      text: content?.giovani ?? "" },
+    { label: "Situazione sanitaria", text: content?.sanita ?? "" },
+  ];
 
   return (
     <div className="h-full flex flex-col bg-zinc-950 animate-slide-in overflow-hidden">
@@ -242,10 +151,10 @@ export default function ContentPanel({ conflict, content, heroSrc, gallery, onCl
       </div>
 
       {/* ── Scrollable body ── */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto px-5 py-5 flex flex-col gap-5">
 
-        {/* ── Mini report ── */}
-        <div className="mx-5 mt-5 mb-4 rounded-2xl border border-zinc-800/50 bg-zinc-900/40 overflow-hidden">
+        {/* ── Report grafico ── */}
+        <div className="rounded-2xl border border-zinc-800/50 bg-zinc-900/40 overflow-hidden">
           <div className="px-5 py-3 border-b border-zinc-800/50 flex items-center justify-between">
             <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold">
               Report situazione
@@ -254,26 +163,21 @@ export default function ContentPanel({ conflict, content, heroSrc, gallery, onCl
               Stabilità {stability.label}
             </span>
           </div>
-
           <div className="px-5 py-5 flex items-start gap-5">
-            <RadialChart
-              criticita={conflict.criticita}
-              stabilita={conflict.stabilita}
-              anni={yearsActive}
-            />
+            <RadialChart criticita={conflict.criticita} stabilita={conflict.stabilita} anni={yearsActive} />
             <div className="flex-1 flex flex-col gap-3 text-xs pt-1">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-1 rounded-full bg-red-400 shrink-0" />
                 <span className="text-zinc-500">Criticità bambini</span>
                 <span className="ml-auto font-bold tabular-nums" style={{ color: "#f87171" }}>
-                  {conflict.criticita}<span className="text-zinc-600 font-normal">/10</span>
+                  {conflict.criticita * 10}<span className="text-zinc-600 font-normal">%</span>
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-1 rounded-full bg-amber-400 shrink-0" />
                 <span className="text-zinc-500">Instabilità paese</span>
                 <span className="ml-auto font-bold tabular-nums" style={{ color: "#fbbf24" }}>
-                  {10 - conflict.stabilita}<span className="text-zinc-600 font-normal">/10</span>
+                  {(10 - conflict.stabilita) * 10}<span className="text-zinc-600 font-normal">%</span>
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -288,102 +192,37 @@ export default function ContentPanel({ conflict, content, heroSrc, gallery, onCl
                 <span
                   className="ml-auto text-[11px] font-semibold"
                   style={{
-                    color: conflict.criticita >= 9 ? "#f87171"
-                         : conflict.criticita >= 7 ? "#fbbf24"
-                         : "#a1a1aa",
+                    color: conflict.criticita >= 9 ? "#f87171" : conflict.criticita >= 7 ? "#fbbf24" : "#a1a1aa",
                   }}
                 >
-                  {conflict.criticita >= 9 ? "Critico"
-                   : conflict.criticita >= 7 ? "Elevato"
-                   : "Moderato"}
+                  {conflict.criticita >= 9 ? "Critico" : conflict.criticita >= 7 ? "Elevato" : "Moderato"}
                 </span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Section tiles */}
-        <div className="px-5 pb-4 grid grid-cols-3 gap-3">
-          {SECTIONS.map((s) => {
-            const isOpen = openSection === s.key;
-            return (
-              <button
-                key={s.key}
-                onClick={() => setOpenSection(isOpen ? null : s.key)}
-                className="rounded-2xl border flex flex-col items-center justify-center gap-2.5 py-5 px-2 cursor-pointer transition-all duration-200 hover:scale-[1.04] active:scale-[0.98]"
-                style={{
-                  background: isOpen ? s.accentDim : "rgba(24,24,27,0.9)",
-                  borderColor: isOpen ? s.accentBorder : "rgba(63,63,70,0.6)",
-                  boxShadow: isOpen ? `0 0 20px 0 ${s.accentDim}` : "none",
-                }}
-              >
-                {/* Icon wrapper */}
-                <span
-                  className="w-12 h-12 flex items-center justify-center rounded-xl transition-colors"
-                  style={{
-                    background: isOpen ? `${s.accentDim}` : "rgba(39,39,42,0.8)",
-                    color: isOpen ? s.accent : "#71717a",
-                  }}
-                >
-                  {s.icon}
-                </span>
-                <span
-                  className="text-[11px] font-semibold tracking-wide leading-tight text-center"
-                  style={{ color: isOpen ? s.accent : "#a1a1aa" }}
-                >
-                  {s.label}
-                </span>
-              </button>
-            );
-          })}
+        {/* ── Brief summaries ── */}
+        <div className="flex flex-col gap-3">
+          {briefs.map(({ label, text }) => text ? (
+            <div key={label} className="rounded-xl border border-zinc-800/50 bg-zinc-900/30 px-4 py-3">
+              <p className="text-[10px] uppercase tracking-[0.18em] font-bold text-zinc-500 mb-1.5">{label}</p>
+              <p className="text-sm text-zinc-300 leading-relaxed">{brief(text)}</p>
+            </div>
+          ) : null)}
         </div>
 
-        {/* Expanded section content */}
-        {openSection && activeDef && (
-          <div
-            className="mx-5 mb-5 rounded-xl border overflow-hidden"
-            style={{ borderColor: activeDef.accentBorder }}
-          >
-            {/* Section header */}
-            <div
-              className="px-5 py-3 border-b flex items-center gap-2.5"
-              style={{ borderColor: activeDef.accentBorder, background: activeDef.accentDim }}
-            >
-              <span style={{ color: activeDef.accent }}>{activeDef.icon}</span>
-              <span className="text-sm font-semibold" style={{ color: activeDef.accent }}>
-                {activeDef.fullLabel}
-              </span>
-            </div>
-            {/* Section body */}
-            <div className="px-5 py-4 bg-zinc-950/60">
-              {sectionText[openSection] ? (
-                <>
-                  <p className="text-zinc-300 text-sm leading-relaxed">
-                    {renderText(sectionText[openSection])}
-                  </p>
-                  {gallery.length > 0 && (
-                    <div className={`mt-4 grid gap-2 ${gallery.length === 1 ? "grid-cols-1" : "grid-cols-2"}`}>
-                      {gallery.map((src, i) => (
-                        <div key={i} className="relative aspect-[4/3] rounded-lg overflow-hidden bg-zinc-800">
-                          <Image
-                            src={src}
-                            alt={`${conflict.nome} — ${i + 1}`}
-                            fill
-                            className="object-cover hover:scale-105 transition-transform duration-500"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </>
-              ) : (
-                <p className="text-zinc-600 italic text-sm">
-                  [Da compilare — {conflict.autori.join(", ")}]
-                </p>
-              )}
-            </div>
-          </div>
-        )}
+        {/* ── CTA ── */}
+        <Link
+          href={`/conflitto/${conflict.slug}`}
+          className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-red-950/40 border border-red-900/50 text-red-400 text-sm font-semibold hover:bg-red-950/70 hover:border-red-800 transition-colors"
+        >
+          Leggi la scheda completa
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </Link>
 
       </div>
     </div>
