@@ -137,6 +137,24 @@ const SECTIONS: SectionDef[] = [
   },
 ];
 
+// ─── Bold text renderer ───────────────────────────────────────────────────────
+
+function renderBold(text: string): React.ReactNode[] {
+  const parts = text.split(/\*([^*]+)\*/g);
+  return parts.map((part, i) =>
+    i % 2 === 1 ? <strong key={i} className="font-semibold text-zinc-100">{part}</strong> : part
+  );
+}
+
+function renderText(text: string): React.ReactNode {
+  return text.split("\n").map((line, i, arr) => (
+    <span key={i}>
+      {renderBold(line)}
+      {i < arr.length - 1 && <br />}
+    </span>
+  ));
+}
+
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export default function ContentPanel({ conflict, content, heroSrc, gallery, onClose }: Props) {
@@ -328,8 +346,8 @@ export default function ContentPanel({ conflict, content, heroSrc, gallery, onCl
             <div className="px-5 py-4 bg-zinc-950/60">
               {sectionText[openSection] ? (
                 <>
-                  <p className="text-zinc-300 text-sm leading-relaxed whitespace-pre-wrap">
-                    {sectionText[openSection]}
+                  <p className="text-zinc-300 text-sm leading-relaxed">
+                    {renderText(sectionText[openSection])}
                   </p>
                   {gallery.length > 0 && (
                     <div className={`mt-4 grid gap-2 ${gallery.length === 1 ? "grid-cols-1" : "grid-cols-2"}`}>

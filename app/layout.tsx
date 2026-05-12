@@ -35,10 +35,10 @@ export default function RootLayout({
         <header className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-xl" style={{ borderBottomColor: "rgba(22,101,52,0.35)" }}>
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <Link href="/" className="flex flex-col group">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 group-hover:text-zinc-400 transition">
+              <span className="text-xs uppercase tracking-[0.18em] text-zinc-500 group-hover:text-zinc-400 transition font-medium">
                 Collegio San Giuseppe — Liceo Scientifico
               </span>
-              <span className="text-base font-bold tracking-tight text-zinc-100">
+              <span className="text-xl font-bold tracking-tight text-zinc-100 leading-snug">
                 Eserciti finanziati, infanzie dimenticate
               </span>
             </Link>
