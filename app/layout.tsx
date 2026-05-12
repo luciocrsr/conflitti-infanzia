@@ -32,7 +32,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${newsreader.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100">
-        <header className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-xl" style={{ borderBottomColor: "rgba(22,101,52,0.35)" }}>
+        <header className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-xl" style={{ borderBottomColor: "rgba(153,27,27,0.35)" }}>
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <Link href="/" className="flex flex-col group">
               <span className="text-xs uppercase tracking-[0.18em] text-zinc-500 group-hover:text-zinc-400 transition font-medium">
@@ -45,13 +45,13 @@ export default function RootLayout({
             <nav className="flex gap-6 text-sm font-medium text-zinc-400">
               <Link
                 href="/"
-                className="hover:text-emerald-400 transition-colors"
+                className="hover:text-red-400 transition-colors"
               >
                 Mappa
               </Link>
               <Link
                 href="/crediti"
-                className="hover:text-emerald-400 transition-colors"
+                className="hover:text-red-400 transition-colors"
               >
                 Crediti
               </Link>

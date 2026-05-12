@@ -68,21 +68,21 @@ export default async function ConflictPage({
             priority
           />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/60 via-zinc-900 to-zinc-950" />
+          <div className="absolute inset-0 bg-gradient-to-br from-red-950/60 via-zinc-900 to-zinc-950" />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
 
         {/* Back link */}
         <Link
           href="/"
-          className="absolute top-6 left-6 text-sm text-zinc-400 hover:text-emerald-400 transition-colors inline-flex items-center gap-1.5 bg-zinc-950/60 backdrop-blur px-3 py-1.5 rounded-full border border-zinc-800/60"
+          className="absolute top-6 left-6 text-sm text-zinc-400 hover:text-red-400 transition-colors inline-flex items-center gap-1.5 bg-zinc-950/60 backdrop-blur px-3 py-1.5 rounded-full border border-zinc-800/60"
         >
           ← Torna alla mappa
         </Link>
 
         {/* Title overlay */}
         <div className="absolute bottom-0 left-0 right-0 px-8 pb-10 max-w-5xl mx-auto">
-          <span className="inline-block text-[10px] uppercase tracking-[0.25em] text-emerald-400 font-bold mb-3">
+          <span className="inline-block text-[10px] uppercase tracking-[0.25em] text-red-400 font-bold mb-3">
             {gruppoLabel}
           </span>
           <h1 className="text-5xl sm:text-6xl font-bold text-zinc-100 tracking-tight mb-4" style={{ fontFamily: "var(--font-newsreader)" }}>
@@ -166,7 +166,7 @@ export default async function ConflictPage({
         <div className="pt-8 border-t border-zinc-800 flex justify-between items-center">
           <Link
             href="/"
-            className="text-sm text-zinc-500 hover:text-emerald-400 transition-colors inline-flex items-center gap-1.5"
+            className="text-sm text-zinc-500 hover:text-red-400 transition-colors inline-flex items-center gap-1.5"
           >
             ← Torna alla mappa
           </Link>

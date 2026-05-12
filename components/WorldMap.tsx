@@ -15,11 +15,11 @@ const COLORS = {
   ocean: "#09090b",
   land: "#1c1c1f",
   landStroke: "#27272a",
-  active: "#166534",
-  activeHover: "#15803d",
-  activeStroke: "#14532d",
-  selected: "#4ade80",
-  selectedStroke: "#16a34a",
+  active: "#991b1b",
+  activeHover: "#b91c1c",
+  activeStroke: "#7f1d1d",
+  selected: "#f87171",
+  selectedStroke: "#dc2626",
 };
 
 type Props = {
@@ -123,7 +123,7 @@ export default function WorldMap({ onSelect, selectedSlug, center, zoom }: Props
             <p className="text-sm font-semibold text-zinc-100">
               {conflicts.find((c) => c.slug === hovered)?.nome}
             </p>
-            <p className="text-[11px] text-emerald-400 mt-0.5">
+            <p className="text-[11px] text-red-400 mt-0.5">
               Clicca per esplorare →
             </p>
           </div>

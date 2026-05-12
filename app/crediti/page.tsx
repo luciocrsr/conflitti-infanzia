@@ -30,7 +30,7 @@ export default function CreditiPage() {
     <div className="max-w-3xl mx-auto px-6 py-10">
       <Link
         href="/"
-        className="text-sm text-zinc-500 hover:text-emerald-400 transition-colors inline-flex items-center gap-1.5 mb-8"
+        className="text-sm text-zinc-500 hover:text-red-400 transition-colors inline-flex items-center gap-1.5 mb-8"
       >
         ← Torna alla mappa
       </Link>
@@ -66,7 +66,7 @@ export default function CreditiPage() {
               <li key={c.slug} className="flex items-baseline justify-between gap-4">
                 <Link
                   href={`/conflitto/${c.slug}`}
-                  className="text-zinc-200 font-medium hover:text-emerald-400 transition-colors"
+                  className="text-zinc-200 font-medium hover:text-red-400 transition-colors"
                 >
                   {c.nome}
                 </Link>

@@ -59,7 +59,7 @@ function stabilityInfo(s: number) {
   if (s <= 4) return { label: "Alta",       cls: "text-orange-400 bg-orange-950/50 border-orange-800/60" };
   if (s <= 6) return { label: "Moderata",   cls: "text-amber-300  bg-amber-950/50  border-amber-800/60"  };
   if (s <= 8) return { label: "Bassa",      cls: "text-lime-400   bg-lime-950/50   border-lime-800/60"   };
-  return             { label: "Minima",     cls: "text-emerald-400 bg-emerald-950/50 border-emerald-800/60" };
+  return             { label: "Minima",     cls: "text-red-400 bg-red-950/50 border-red-800/60" };
 }
 
 // ─── Radial chart ─────────────────────────────────────────────────────────────
@@ -90,9 +90,9 @@ const SECTIONS: SectionDef[] = [
     key: "contestualizzazione",
     label: "Contesto",
     fullLabel: "Contestualizzazione",
-    accent: "#34d399",
-    accentDim: "rgba(52,211,153,0.07)",
-    accentBorder: "rgba(52,211,153,0.35)",
+    accent: "#f87171",
+    accentDim: "rgba(248,113,113,0.07)",
+    accentBorder: "rgba(248,113,113,0.35)",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
         <circle cx="12" cy="12" r="10" />
@@ -189,12 +189,12 @@ export default function ContentPanel({ conflict, content, heroSrc, gallery, onCl
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent" />
           </div>
         ) : (
-          <div className="h-20 w-full bg-gradient-to-br from-emerald-950/40 via-zinc-900 to-zinc-950" />
+          <div className="h-20 w-full bg-gradient-to-br from-red-950/40 via-zinc-900 to-zinc-950" />
         )}
         <div className="absolute bottom-0 left-0 right-0 px-6 pb-4">
           <div className="flex items-start justify-between">
             <div>
-              <span className="text-[10px] uppercase tracking-[0.2em] text-emerald-400 font-bold">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-red-400 font-bold">
                 {gruppoLabel}
               </span>
               <h2 className="text-2xl font-bold text-zinc-100 tracking-tight leading-tight">
@@ -218,7 +218,7 @@ export default function ContentPanel({ conflict, content, heroSrc, gallery, onCl
       {/* ── Metadata ── */}
       <div className="shrink-0 px-6 py-3 border-b border-zinc-800/60 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
         <span className="flex items-center gap-1.5 text-zinc-400">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+          <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
           Dal <span className="text-zinc-200 font-medium ml-1">{conflict.anno}</span>
         </span>
         <span className="text-zinc-700">·</span>
