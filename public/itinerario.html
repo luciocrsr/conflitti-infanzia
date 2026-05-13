@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proposte viaggio d'istruzione</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root,
+        [data-theme="light"] {
+            --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+            --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+            --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+            --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+            --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+
+            --color-bg: #f7f6f2;
+            --color-surface: #fcfbf8;
+            --color-surface-2: #f2f6fb;
+            --color-surface-offset: #ece8e1;
+            --color-border: #d7d4ce;
+            --color-divider: #e3e0da;
+
+            --color-text: #232118;
+            --color-text-muted: #6f6d67;
+            --color-text-faint: #9c9992;
+            --color-text-inverse: #f9f8f4;
+
+            --color-primary: #0d4f74;
+            --color-primary-hover: #0b3f5c;
+            --color-primary-soft: #dfeef7;
+            --color-gold: #c7972f;
+            --color-gold-soft: #f4e7c8;
+
+            --radius-sm: 0.5rem;
+            --radius-md: 0.875rem;
+            --radius-lg: 1.25rem;
+            --radius-xl: 1.75rem;
+            --radius-full: 9999px;
+
+            --shadow-sm: 0 2px 10px rgba(35, 33, 24, 0.05);
+            --shadow-md: 0 10px 30px rgba(35, 33, 24, 0.08);
+            --shadow-lg: 0 18px 50px rgba(35, 33, 24, 0.12);
+
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', system-ui, sans-serif;
+
+            --content: 1120px;
+            --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-theme="dark"] {
+            --color-bg: #171614;
+            --color-surface: #1d1c1a;
+            --color-surface-2: #202a31;
+            --color-surface-offset: #252422;
+            --color-border: #3a3835;
+            --color-divider: #2a2926;
+
+            --color-text: #ece7de;
+            --color-text-muted: #b1aca3;
+            --color-text-faint: #8c877e;
+            --color-text-inverse: #171614;
+
+            --color-primary: #67a6c8;
+            --color-primary-hover: #8ebbd5;
+            --color-primary-soft: #223743;
+            --color-gold: #ddb45a;
+            --color-gold-soft: #43361d;
+
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.18);
+            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.26);
+            --shadow-lg: 0 18px 50px rgba(0, 0, 0, 0.34);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--color-text);
+            background:
+                radial-gradient(circle at top right, rgba(199, 151, 47, 0.10), transparent 28%),
+                radial-gradient(circle at top left, rgba(13, 79, 116, 0.10), transparent 24%),
+                var(--color-bg);
+        }
+
+        img,
+        svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        button,
+        a {
+            transition: all var(--transition);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            border: 0;
+            background: none;
+            cursor: pointer;
+            font: inherit;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 3px;
+            border-radius: var(--radius-sm);
+        }
+
+        .container {
+            width: min(calc(100% - 2rem), var(--content));
+            margin: 0 auto;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: var(--space-4);
+            background: var(--color-primary);
+            color: var(--color-text-inverse);
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--radius-full);
+            z-index: 1000;
+        }
+
+        .skip-link:focus {
+            left: var(--space-4);
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(14px);
+            background: color-mix(in srgb, var(--color-bg) 82%, transparent);
+            border-bottom: 1px solid var(--color-divider);
+        }
+
+        .nav {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-4);
+            padding-block: var(--space-3);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            min-width: 0;
+        }
+
+        .brand-mark {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 72%, white));
+            color: white;
+            display: grid;
+            place-items: center;
+            box-shadow: var(--shadow-md);
+            flex-shrink: 0;
+        }
+
+        .brand-mark svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .brand-copy strong {
+            display: block;
+            font-size: var(--text-sm);
+            color: var(--color-text);
+        }
+
+        .brand-copy span {
+            display: block;
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a,
+        .theme-toggle {
+            min-height: 44px;
+            padding: 0.7rem 1rem;
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .nav-links a:hover,
+        .theme-toggle:hover {
+            background: var(--color-primary-soft);
+            color: var(--color-primary);
+        }
+
+        .theme-toggle {
+            border: 1px solid var(--color-border);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--color-surface);
+        }
+
+        .hero {
+            padding-block: clamp(var(--space-12), 10vw, var(--space-20));
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: var(--space-8);
+            align-items: stretch;
+        }
+
+        .hero-card,
+        .stats-card,
+        .panel,
+        .compare-card,
+        .final-card {
+            background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+            border: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-card {
+            padding: clamp(var(--space-6), 5vw, var(--space-12));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(199, 151, 47, 0.18), transparent 70%);
+            top: -80px;
+            right: -70px;
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-height: 44px;
+            padding: 0.7rem 1rem;
+            border-radius: var(--radius-full);
+            background: var(--color-primary-soft);
+            color: var(--color-primary);
+            font-size: var(--text-sm);
+            font-weight: 700;
+            margin-bottom: var(--space-5);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-display);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+        }
+
+        h1 {
+            font-size: var(--text-2xl);
+            max-width: 12ch;
+            margin-bottom: var(--space-4);
+        }
+
+        .hero p {
+            color: var(--color-text-muted);
+            max-width: 60ch;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+            margin-top: var(--space-6);
+        }
+
+        .btn {
+            min-height: 48px;
+            padding: 0.85rem 1.2rem;
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: var(--color-text-inverse);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--color-surface);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-surface-2);
+        }
+
+        .stats-stack {
+            display: grid;
+            gap: var(--space-4);
+        }
+
+        .stats-card {
+            padding: var(--space-6);
+        }
+
+        .stats-card strong {
+            display: block;
+            font-size: var(--text-xl);
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: var(--space-2);
+            font-family: var(--font-display);
+        }
+
+        .stats-card span {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+        }
+
+        section {
+            padding-block: clamp(var(--space-10), 8vw, var(--space-16));
+        }
+
+        .section-head {
+            margin-bottom: var(--space-6);
+        }
+
+        .section-head h2 {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-2);
+        }
+
+        .section-head p {
+            color: var(--color-text-muted);
+            max-width: 65ch;
+        }
+
+        .selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+
+        .trip-btn {
+            padding: var(--space-5);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+            background: var(--color-surface);
+            text-align: left;
+            min-height: 92px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .trip-btn strong {
+            display: block;
+            font-size: var(--text-base);
+            margin-bottom: 0.25rem;
+        }
+
+        .trip-btn span {
+            display: block;
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+        }
+
+        .trip-btn.active {
+            background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 72%, white));
+            color: white;
+            border-color: transparent;
+        }
+
+        .trip-btn.active span {
+            color: rgba(255, 255, 255, 0.84);
+        }
+
+        .trip-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: var(--space-6);
+            align-items: start;
+        }
+
+        .panel {
+            padding: var(--space-6);
+        }
+
+        .sticky-panel {
+            position: sticky;
+            top: 98px;
+        }
+
+        .trip-meta h3 {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-3);
+        }
+
+        .trip-meta p {
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-5);
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-bottom: var(--space-5);
+        }
+
+        .badge {
+            min-height: 38px;
+            padding: 0.55rem 0.85rem;
+            border-radius: var(--radius-full);
+            background: var(--color-primary-soft);
+            color: var(--color-primary);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .day-tabs {
+            display: grid;
+            gap: var(--space-2);
+        }
+
+        .day-tab {
+            min-height: 48px;
+            padding: 0.85rem 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-border);
+            background: var(--color-surface);
+            text-align: left;
+            font-size: var(--text-sm);
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .day-tab.active,
+        .day-tab:hover {
+            background: var(--color-primary);
+            color: var(--color-text-inverse);
+            border-color: var(--color-primary);
+        }
+
+        .day-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: var(--space-4);
+            margin-bottom: var(--space-5);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--color-divider);
+        }
+
+        .day-top h3 {
+            font-size: var(--text-xl);
+            margin-bottom: 0.35rem;
+        }
+
+        .day-top p {
+            color: var(--color-text-muted);
+            font-size: var(--text-sm);
+        }
+
+        .map-link {
+            min-height: 44px;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-full);
+            background: var(--color-gold-soft);
+            color: #6a4a0a;
+            font-size: var(--text-sm);
+            font-weight: 800;
+            white-space: nowrap;
+            border: 1px solid color-mix(in srgb, var(--color-gold) 35%, transparent);
+        }
+
+        .map-link:hover {
+            transform: translateY(-1px);
+            background: color-mix(in srgb, var(--color-gold-soft) 70%, white);
+        }
+
+        .timeline {
+            display: grid;
+            gap: var(--space-3);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: var(--space-4);
+            align-items: stretch;
+        }
+
+        .time {
+            border-radius: var(--radius-md);
+            background: var(--color-surface-2);
+            color: var(--color-primary);
+            font-size: var(--text-sm);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-4);
+            text-align: center;
+            min-height: 72px;
+        }
+
+        .activity {
+            border-radius: var(--radius-md);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            padding: var(--space-4) var(--space-5);
+            display: flex;
+            align-items: center;
+            min-height: 72px;
+        }
+
+        .activity strong {
+            font-size: var(--text-base);
+            font-weight: 700;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-5);
+        }
+
+        .compare-card {
+            padding: var(--space-6);
+        }
+
+        .compare-card h3 {
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-4);
+        }
+
+        .compare-card ul {
+            list-style: none;
+            display: grid;
+            gap: var(--space-3);
+        }
+
+        .compare-card li {
+            display: flex;
+            gap: 0.7rem;
+            align-items: flex-start;
+            color: var(--color-text);
+        }
+
+        .compare-card li::before {
+            content: "•";
+            color: var(--color-gold);
+            font-weight: 900;
+            line-height: 1;
+            margin-top: 0.2rem;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
+            background: var(--color-surface);
+        }
+
+        th,
+        td {
+            padding: 1rem 1.1rem;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid var(--color-divider);
+            font-size: var(--text-sm);
+        }
+
+        th {
+            background: var(--color-primary);
+            color: var(--color-text-inverse);
+            font-weight: 700;
+        }
+
+        tr:last-child td {
+            border-bottom: 0;
+        }
+
+        td:first-child {
+            font-weight: 700;
+            color: var(--color-text);
+            min-width: 150px;
+        }
+
+        .final-card {
+            padding: clamp(var(--space-6), 4vw, var(--space-10));
+            background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 78%, black 8%));
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .final-card::after {
+            content: "";
+            position: absolute;
+            inset: auto -40px -60px auto;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.16), transparent 68%);
+            pointer-events: none;
+        }
+
+        .final-card h2 {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-3);
+            color: white;
+        }
+
+        .final-card p {
+            max-width: 72ch;
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+        .site-footer {
+            padding: var(--space-8) 0 var(--space-10);
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: var(--text-sm);
+        }
+
+        @media (max-width: 980px) {
+
+            .hero-grid,
+            .trip-layout,
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .sticky-panel {
+                position: static;
+            }
+
+            .selector {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .nav {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .day-top {
+                flex-direction: column;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+
+            .time {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#contenuto" class="skip-link">Vai al contenuto</a>
+
+    <header class="site-header">
+        <div class="container nav">
+            <a href="#" class="brand" aria-label="Home">
+                <div class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M4 18h16" />
+                        <path d="M6 18V8l6-4 6 4v10" />
+                        <path d="M9 11h6" />
+                    </svg>
+                </div>
+                <div class="brand-copy">
+                    <strong>Viaggio d'istruzione</strong>
+                    <span>Presentazione interattiva</span>
+                </div>
+            </a>
+
+            <nav class="nav-links" aria-label="Navigazione principale">
+                <a href="#itinerari">Itinerari</a>
+                <a href="#valore">Valore formativo</a>
+                <a href="#confronto">Confronto</a>
+                <a href="#conclusione">Conclusione</a>
+                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Attiva tema scuro">
+                    <span aria-hidden="true">◐</span>
+                    <span>Tema</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="contenuto">
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-card">
+                    <div class="eyebrow">Viaggio scolastico · 4 giorni</div>
+                    <h1>Due proposte navigabili per presentare il progetto con un link.</h1>
+                    <p>
+                        La pagina riunisce due itinerari di 4 giorni pensati per una presentazione scolastica: Napoli e
+                        Costiera Amalfitana, oppure Roma, con visite guidate, momenti di autonomia distribuiti e rientro
+                        obbligatorio in hotel alle 23:30.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#itinerari">Esplora gli itinerari</a>
+                        <a class="btn btn-secondary" href="#confronto">Apri il confronto</a>
+                    </div>
+                </div>
+
+                <div class="stats-stack" aria-label="Dati sintetici">
+                    <div class="stats-card">
+                        <strong>4 giorni</strong>
+                        <span>Durata prevista per entrambe le proposte.</span>
+                    </div>
+                    <div class="stats-card">
+                        <strong>820–900 €</strong>
+                        <span>Budget indicativo per studente, variabile in base alla destinazione.</span>
+                    </div>
+                    <div class="stats-card">
+                        <strong>23:30</strong>
+                        <span>Orario fisso di rientro in hotel in entrambi gli itinerari.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="itinerari">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Itinerari interattivi</h2>
+                    <p>
+                        Le due proposte sono strutturate per offrire equilibrio tra valore culturale, qualità
+                        organizzativa, sostenibilità dei tempi e sicurezza del gruppo.
+                    </p>
+                </div>
+
+                <div class="selector" role="tablist" aria-label="Selezione itinerario">
+                    <button class="trip-btn active" id="btn-napoli" role="tab" aria-selected="true"
+                        aria-controls="trip-panel" onclick="selectTrip('napoli')">
+                        <strong>Napoli e Costiera Amalfitana</strong>
+                        <span>Archeologia, paesaggio, patrimonio urbano.</span>
+                    </button>
+                    <button class="trip-btn" id="btn-roma" role="tab" aria-selected="false" aria-controls="trip-panel"
+                        onclick="selectTrip('roma')">
+                        <strong>Roma</strong>
+                        <span>Storia, arte monumentale, Vaticano.</span>
+                    </button>
+                </div>
+
+                <div class="trip-layout">
+                    <aside class="panel sticky-panel">
+                        <div class="trip-meta">
+                            <h3 id="trip-title">Napoli e Costiera Amalfitana</h3>
+                            <p id="trip-description">
+                                Questa proposta unisce il patrimonio storico e artistico di Napoli con l'interesse
+                                archeologico di Pompei, la dimensione naturalistica del Vesuvio e il pregio
+                                paesaggistico della Costiera Amalfitana.
+                            </p>
+
+                            <div class="badges">
+                                <span class="badge" id="trip-duration">4 giorni</span>
+                                <span class="badge" id="trip-budget">820-890 euro</span>
+                                <span class="badge">Rientro 23:30</span>
+                            </div>
+                        </div>
+
+                        <div class="day-tabs" id="day-tabs" aria-label="Giorni dell'itinerario"></div>
+                    </aside>
+
+                    <div class="panel" id="trip-panel">
+                        <div class="day-top">
+                            <div>
+                                <h3 id="day-title">Giorno 1 - Napoli storica</h3>
+                                <p id="day-subtitle">Programma dettagliato della giornata</p>
+                            </div>
+                            <a id="maps-link" class="map-link"
+                                href="https://www.google.com/maps/search/Spaccanapoli+Duomo+di+Napoli" target="_blank"
+                                rel="noopener noreferrer">
+                                Apri su Maps
+                            </a>
+                        </div>
+
+                        <div class="timeline" id="timeline"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="valore">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Valore formativo</h2>
+                    <p>
+                        Entrambe le proposte includono attività culturali e visite in ogni giornata, con fasce di tempo
+                        libero collocate tra pranzo, pomeriggio e sera in modo controllato.
+                    </p>
+                </div>
+
+                <div class="grid-2">
+                    <article class="compare-card">
+                        <h3>Napoli e Costiera Amalfitana</h3>
+                        <ul>
+                            <li>Approfondimento del patrimonio storico e religioso del centro di Napoli.</li>
+                            <li>Contatto diretto con uno dei più importanti siti archeologici del mondo, Pompei.
+                            </li>
+                            <li>Osservazione ambientale e geografica dell'area vesuviana.</li>
+                            <li>Conoscenza di località di alto rilievo paesaggistico e culturale della Costiera
+                                Amalfitana.</li>
+                            <li>Itinerario molto vario e dinamico, con alternanza tra città, archeologia, natura e
+                                paesaggio.</li>
+                        </ul>
+                    </article>
+
+                    <article class="compare-card">
+                        <h3>Roma</h3>
+                        <ul>
+                            <li>Approfondimento diretto della civiltà romana antica.</li>
+                            <li>Lettura del patrimonio artistico e urbano del centro storico di Roma.</li>
+                            <li>Possibilità di collegamenti interdisciplinari tra storia, arte e religione.</li>
+                            <li>Visita a luoghi di riferimento internazionale per la cultura europea e
+                                cristiana.</li>
+                            <li>Itinerario compatto, coerente e particolarmente efficace per una presentazione
+                                scolastica e istituzionale.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="confronto">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Confronto sintetico</h2>
+                    <p>
+                        Il confronto finale mette in evidenza durata, budget, tema prevalente, carattere
+                        dell'esperienza, distribuzione del tempo libero e orario di rientro.
+                    </p>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspetto</th>
+                                <th>Napoli e Costiera Amalfitana</th>
+                                <th>Roma</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Durata</td>
+                                <td>4 giorni.</td>
+                                <td>4 giorni.</td>
+                            </tr>
+                            <tr>
+                                <td>Budget indicativo</td>
+                                <td>820-890 euro.</td>
+                                <td>830-900 euro.</td>
+                            </tr>
+                            <tr>
+                                <td>Tema prevalente</td>
+                                <td>Archeologia, paesaggio, patrimonio urbano.</td>
+                                <td>Storia, arte monumentale, Vaticano.</td>
+                            </tr>
+                            <tr>
+                                <td>Carattere dell'esperienza</td>
+                                <td>Più vario e paesaggistico.</td>
+                                <td>Più lineare e storico-monumentale.</td>
+                            </tr>
+                            <tr>
+                                <td>Tempo libero</td>
+                                <td>Distribuito tra pranzo, pomeriggio e sera.</td>
+                                <td>Distribuito tra pranzo, pomeriggio e sera.</td>
+                            </tr>
+                            <tr>
+                                <td>Orario di rientro</td>
+                                <td>23:30.</td>
+                                <td>23:30.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusione">
+            <div class="container">
+                <div class="final-card">
+                    <h2>Valutazione conclusiva</h2>
+                    <p>
+                        Entrambe le proposte risultano solide, sostenibili e adeguate a un viaggio d'istruzione di 4
+                        giorni; la scelta finale può dipendere dalla preferenza per una maggiore varietà territoriale e
+                        paesaggistica nel caso di Napoli e Costiera Amalfitana, oppure per una maggiore concentrazione
+                        storico-monumentale nel caso di Roma.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            Presentazione navigabile online per viaggio d'istruzione.
+        </div>
+    </footer>
+
+    <script>
+        const trips = {
+            napoli: {
+                title: "Napoli e Costiera Amalfitana",
+                description: "Questa proposta unisce il patrimonio storico e artistico di Napoli con l'interesse archeologico di Pompei, la dimensione naturalistica del Vesuvio e il pregio paesaggistico della Costiera Amalfitana.",
+                duration: "4 giorni",
+                budget: "820-890 euro",
+                days: [
+                    {
+                        title: "Giorno 1 - Napoli storica",
+                        subtitle: "Viaggio, centro storico e prime visite culturali",
+                        maps: "https://www.google.com/maps/search/Spaccanapoli+Duomo+di+Napoli",
+                        events: [
+                            ["07:00-12:00", "Viaggio e arrivo a Napoli; sistemazione in hotel"],
+                            ["12:30-14:30", "Pranzo in autonomia e tempo libero nel centro cittadino"],
+                            ["14:30-17:30", "Visita guidata di Spaccanapoli e del Duomo di Napoli"],
+                            ["17:30-19:30", "Tempo libero"],
+                            ["20:00-21:30", "Cena organizzata"],
+                            ["21:30-23:30", "Tempo libero"],
+                            ["23:30", "Rientro obbligatorio in hotel"]
+                        ]
+                    },
+                    {
+                        title: "Giorno 2 - Pompei e Vesuvio",
+                        subtitle: "Archeologia e osservazione ambientale",
+                        maps: "https://www.google.com/maps/search/Scavi+di+Pompei+Vesuvio",
+                        events: [
+                            ["08:00-11:30", "Visita guidata agli Scavi di Pompei"],
+                            ["11:30-13:30", "Pranzo in autonomia e tempo libero"],
+                            ["14:00-17:00", "Escursione al Vesuvio"],
+                            ["17:00-19:00", "Tempo libero"],
+                            ["20:00-22:00", "Cena libera in piccoli gruppi"],
+                            ["23:30", "Ritrovo in hotel"]
+                        ]
+                    },
+                    {
+                        title: "Giorno 3 - Costiera Amalfitana",
+                        subtitle: "Paesaggio, territorio e borghi costieri",
+                        maps: "https://www.google.com/maps/search/Positano+Amalfi+Ravello",
+                        events: [
+                            ["08:00-11:30", "Visita di Positano e Amalfi"],
+                            ["11:30-13:30", "Pranzo in autonomia e tempo libero"],
+                            ["14:00-16:30", "Visita di Ravello"],
+                            ["16:30-18:30", "Tempo libero"],
+                            ["20:00-21:30", "Cena organizzata"],
+                            ["21:30-23:30", "Tempo libero"],
+                            ["23:30", "Rientro in hotel"]
+                        ]
+                    },
+                    {
+                        title: "Giorno 4 - Reggia di Caserta e rientro",
+                        subtitle: "Visita finale e viaggio di rientro",
+                        maps: "https://www.google.com/maps/search/Reggia+di+Caserta",
+                        events: [
+                            ["08:00-11:00", "Visita guidata alla Reggia di Caserta"],
+                            ["11:00-13:00", "Tempo libero e pranzo"],
+                            ["13:00-19:00", "Viaggio di rientro"]
+                        ]
+                    }
+                ]
+            },
+            roma: {
+                title: "Roma",
+                description: "La proposta su Roma presenta un percorso fortemente centrato sul valore storico, artistico e istituzionale della capitale, tra civiltà romana, patrimonio monumentale, barocco e Vaticano.",
+                duration: "4 giorni",
+                budget: "830-900 euro",
+                days: [
+                    {
+                        title: "Giorno 1 - Roma antica",
+                        subtitle: "Colosseo, Foro Romano e primo contatto con la città",
+                        maps: "https://www.google.com/maps/search/Colosseo+Foro+Romano",
+                        events: [
+                            ["07:00-12:00", "Viaggio e arrivo a Roma"],
+                            ["12:00-14:00", "Pranzo in autonomia e tempo libero"],
+                            ["14:00-17:00", "Visita al Colosseo e al Foro Romano"],
+                            ["17:00-19:00", "Tempo libero"],
+                            ["20:00-21:30", "Cena organizzata"],
+                            ["21:30-23:30", "Tempo libero"],
+                            ["23:30", "Rientro in hotel"]
+                        ]
+                    },
+                    {
+                        title: "Giorno 2 - Roma barocca",
+                        subtitle: "Centro storico e monumenti più riconoscibili",
+                        maps: "https://www.google.com/maps/search/Pantheon+Piazza+Navona+Fontana+di+Trevi+Piazza+di+Spagna",
+                        events: [
+                            ["08:00-11:30", "Visita al Pantheon e a Piazza Navona"],
+                            ["11:30-13:30", "Pranzo in autonomia e tempo libero"],
+                            ["14:00-17:00", "Visita alla Fontana di Trevi e a Piazza di Spagna"],
+                            ["17:00-19:00", "Tempo libero"],
+                            ["20:00-22:00", "Cena libera"],
+                            ["23:30", "Ritrovo in hotel"]
+                        ]
+                    },
+                    {
+                        title: "Giorno 3 - Città del Vaticano",
+                        subtitle: "Musei Vaticani, Cappella Sistina e San Pietro",
+                        maps: "https://www.google.com/maps/search/Musei+Vaticani+Cappella+Sistina+Basilica+San+Pietro",
+                        events: [
+                            ["08:00-11:30", "Visita ai Musei Vaticani e alla Cappella Sistina"],
+                            ["11:30-13:30", "Pranzo in autonomia e tempo libero"],
+                            ["14:00-16:30", "Visita alla Basilica di San Pietro"],
+                            ["16:30-18:30", "Tempo libero"],
+                            ["20:00-21:30", "Cena organizzata"],
+                            ["21:30-23:30", "Tempo libero"],
+                            ["23:30", "Rientro in hotel"]
+                        ]
+                    },
+                    {
+                        title: "Giorno 4 - Musei Capitolini e rientro",
+                        subtitle: "Ultima visita e partenza",
+                        maps: "https://www.google.com/maps/search/Musei+Capitolini+Roma",
+                        events: [
+                            ["08:00-11:00", "Visita ai Musei Capitolini"],
+                            ["11:00-13:00", "Tempo libero e pranzo"],
+                            ["13:00-19:00", "Viaggio di rientro"]
+                        ]
+                    }
+                ]
+            }
+        };
+
+        let currentTrip = "napoli";
+        let currentDay = 0;
+
+        function selectTrip(key) {
+            currentTrip = key;
+            currentDay = 0;
+
+            document.getElementById("btn-napoli").classList.toggle("active", key === "napoli");
+            document.getElementById("btn-roma").classList.toggle("active", key === "roma");
+            document.getElementById("btn-napoli").setAttribute("aria-selected", key === "napoli");
+            document.getElementById("btn-roma").setAttribute("aria-selected", key === "roma");
+
+            renderTrip();
+        }
+
+        function selectDay(index) {
+            currentDay = index;
+            renderTrip();
+        }
+
+        function renderTrip() {
+            const trip = trips[currentTrip];
+            const day = trip.days[currentDay];
+
+            document.getElementById("trip-title").textContent = trip.title;
+            document.getElementById("trip-description").textContent = trip.description;
+            document.getElementById("trip-duration").textContent = trip.duration;
+            document.getElementById("trip-budget").textContent = trip.budget;
+            document.getElementById("day-title").textContent = day.title;
+            document.getElementById("day-subtitle").textContent = day.subtitle;
+            document.getElementById("maps-link").href = day.maps;
+
+            const tabs = document.getElementById("day-tabs");
+            tabs.innerHTML = "";
+
+            trip.days.forEach((item, index) => {
+                const button = document.createElement("button");
+                button.className = "day-tab" + (index === currentDay ? " active" : "");
+                button.textContent = item.title;
+                button.setAttribute("type", "button");
+                button.setAttribute("aria-pressed", index === currentDay ? "true" : "false");
+                button.onclick = () => selectDay(index);
+                tabs.appendChild(button);
+            });
+
+            const timeline = document.getElementById("timeline");
+            timeline.innerHTML = "";
+
+            day.events.forEach(([time, activity]) => {
+                const el = document.createElement("div");
+                el.className = "timeline-item";
+                el.innerHTML = `
+          <div class="time">${time}</div>
+          <div class="activity"><strong>${activity}</strong></div>
+        `;
+                timeline.appendChild(el);
+            });
+        }
+
+        (function () {
+            const root = document.documentElement;
+            const toggle = document.querySelector("[data-theme-toggle]");
+            let theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            root.setAttribute("data-theme", theme);
+
+            function syncLabel() {
+                toggle.setAttribute(
+                    "aria-label",
+                    theme === "dark" ? "Attiva tema chiaro" : "Attiva tema scuro"
+                );
+            }
+
+            toggle.addEventListener("click", () => {
+                theme = theme === "dark" ? "light" : "dark";
+                root.setAttribute("data-theme", theme);
+                syncLabel();
+            });
+
+            syncLabel();
+            renderTrip();
+        })();
+    </script>
+</body>
+
+</html>
